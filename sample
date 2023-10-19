@@ -1,0 +1,85 @@
+
+class Contact:
+    def __init__(self, name, email, phone):
+        self.name = name
+        self.email = email
+        self.phone = phone
+
+class AddressBook:
+    def __init__(self):
+        self.contacts = []
+
+    def add_contact(self, name, email, phone):
+        contact = Contact(name, email, phone)
+        self.contacts.append(contact)
+        print(f"Contact '{name}' added to the address book.")
+
+    def view_contacts(self):
+        if not self.contacts:
+            print("The address book is empty.")
+        else:
+            print("Address Book:")
+            for index, contact in enumerate(self.contacts, start=1):
+                print(f"{index}. Name: {contact.name}, Email: {contact.email}, Phone: {contact.phone}")
+
+    def update_contact(self, name, new_email, new_phone):
+        for contact in self.contacts:
+            if contact.name == name:
+                contact.email = new_email
+                contact.phone = new_phone
+                print(f"Contact '{name}' updated.")
+                return
+        print(f"Contact '{name}' not found in the address book.")
+
+    def delete_contact(self, name):
+        for contact in self.contacts:
+            if contact.name == name:
+                self.contacts.remove(contact)
+                print(f"Contact '{name}' deleted.")
+                return
+        print(f"Contact '{name}' not found in the address book.")
+
+def main():
+    address_book = AddressBook()
+
+    while True:
+        print("\nAddress Book Menu:")
+        print("1. Add Contact")
+        print("2. View Contacts")
+        print("3. Update Contact")
+        print("4. Delete Contact")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1/2/3/4/5): ")
+
+        if choice == '1':
+            name = input("Enter the name: ")
+            email = input("Enter the email: ")
+            phone = input("Enter the phone number: ")
+            address_book.add_contact(name, email, phone)
+
+        elif choice == '2':
+            address_book.view_contacts()
+
+        elif choice == '3':
+            name = input("Enter the name of the contact to update: ")
+            new_email = input("Enter the new email: ")
+            new_phone = input("Enter the new phone number: ")
+            address_book.update_contact(name, new_email, new_phone)
+
+        elif choice == '4':
+            name = input("Enter the name of the contact to delete: ")
+            address_book.delete_contact(name)
+
+        elif choice == '5':
+            print("Exiting the Address Book.")
+            break
+
+if __name__ == "__main__":
+    main()
+This code defines two classes, Contact and AddressBook, to manage a simple address book application. The main function serves as a menu-driven interface for interacting with the address book. Users can add, view, update, and delete contacts. You can expand and enhance this example to meet your specific needs and incorporate features like searching, sorting, or saving contacts to a file.
+
+
+
+
+
